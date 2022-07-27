@@ -13,8 +13,15 @@ type Node struct {
 }
 
 func (o *Node) LinkLeft(n *Node) {
-	o.Prev = n
-	n.Next = o
+	if o.Prev == nil {
+		o.Prev = n
+		n.Next = o
+	} else {
+		n.Prev = o.Prev
+		o.Prev.Next = n
+		o.Prev = n
+		n.Next = o
+	}
 }
 
 func (o *Node) LinkRight(n *Node) {
